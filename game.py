@@ -1,7 +1,5 @@
 import sys
-
 import pygame
-
 from Direction import Direction
 from apple import Apple
 from config import GRID_HEIGHT, GRID_WIDTH, GREEN_LIGHT, GREEN_DARK, TILE_SIZE, WHITE, RED, SCREEN_WIDTH, \
@@ -23,7 +21,7 @@ class Game:
         self.trophy_img = pygame.transform.scale(self.trophy_img, (30, 30))
         self.apple_counter_img = pygame.image.load("assets/apple.png").convert_alpha()
         self.apple_counter_img = pygame.transform.scale(self.apple_counter_img, (30, 30))
-        self.arrow_img = pygame.image.load("assets/thinarrow.png").convert_alpha()
+        self.arrow_img = pygame.image.load("assets/arrow-green.png").convert_alpha()
         arrow_size = int(TILE_SIZE * 0.8)
         self.arrow_img = pygame.transform.scale(self.arrow_img, (arrow_size, arrow_size))
         apple_img = pygame.image.load("assets/apple.png").convert_alpha()
@@ -113,10 +111,10 @@ class Game:
             self.apple.move(self.snake)
 
     def draw_score(self):
-        self.screen.blit(self.trophy_img, (10, 10))
-        draw_text(str(self.high_score), True, WHITE, (50,15), 24, self.screen)
+        self.screen.blit(self.trophy_img, (10, 0))
+        draw_text(str(self.high_score), True, WHITE, (50, 15), 24, self.screen)
 
-        self.screen.blit(self.apple_counter_img, (10, 45))
+        self.screen.blit(self.apple_counter_img, (10, 35))
         draw_text(str(self.score), True, WHITE, (50, 50), 24, self.screen)
 
     def draw_game_over(self):

@@ -1,8 +1,6 @@
 import random
 from abc import ABC
-
 import pygame
-
 from Direction import Direction
 from MapObject import MapObject
 from config import GRID_WIDTH, GRID_HEIGHT, TILE_SIZE
