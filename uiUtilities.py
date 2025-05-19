@@ -9,6 +9,7 @@ def draw_text(text, is_bold, color, position, size, screen):
     text_rect = text_surf.get_rect(center=position)
     screen.blit(text_surf, text_rect)
 
+
 def draw_rounded_rect(surface, color, rect, radius, corners):
     shape_surf = pygame.Surface((rect.width, rect.height), pygame.SRCALPHA)
 

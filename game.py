@@ -18,16 +18,21 @@ class Game:
         self.clock = pygame.time.Clock()
 
         # load assets
-        self.apple_img = pygame.image.load("assets/apple.png").convert_alpha()
         self.head_img = pygame.image.load("assets/snakehead.png").convert_alpha()
         self.trophy_img = pygame.image.load("assets/trophy.png").convert_alpha()
         self.trophy_img = pygame.transform.scale(self.trophy_img, (30, 30))
-        self.apple_ui_img = pygame.image.load("assets/apple.png").convert_alpha()
-        self.apple_ui_img = pygame.transform.scale(self.apple_ui_img, (30, 30))
+        self.apple_counter_img = pygame.image.load("assets/apple.png").convert_alpha()
+        self.apple_counter_img = pygame.transform.scale(self.apple_counter_img, (30, 30))
+        self.arrow_img = pygame.image.load("assets/thinarrow.png").convert_alpha()
+        arrow_size = int(TILE_SIZE * 0.8)
+        self.arrow_img = pygame.transform.scale(self.arrow_img, (arrow_size, arrow_size))
+        apple_img = pygame.image.load("assets/apple.png").convert_alpha()
+        apple_size = int(TILE_SIZE * 0.9)
+        self.apple_img = pygame.transform.scale(apple_img, (apple_size, apple_size))
 
         self.start_body = [(7, 5), (6, 5), (5, 5)]
         self.snake = Snake(self.start_body, Direction.RIGHT, self.head_img)
-        self.apple = Apple(self.snake)
+        self.apple = Apple(self.snake, self.apple_img, self.arrow_img)
         self.score = 0
         self.high_score = 0
         self.game_over = False
@@ -102,7 +107,7 @@ class Game:
         self.screen.blit(self.trophy_img, (10, 10))
         draw_text(str(self.high_score), True, WHITE, (50,15), 24, self.screen)
 
-        self.screen.blit(self.apple_ui_img, (10, 45))
+        self.screen.blit(self.apple_counter_img, (10, 45))
         draw_text(str(self.score), True, WHITE, (50, 50), 24, self.screen)
 
     def draw_game_over(self):
