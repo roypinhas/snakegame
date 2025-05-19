@@ -4,7 +4,7 @@ import pygame
 
 from Direction import Direction
 from apple import Apple
-from config import GRID_HEIGHT, GRID_WIDTH, GREEN_LIGHT, GREEN_DARK, TILE_SIZE, FONT_NAME, WHITE, RED, SCREEN_WIDTH, \
+from config import GRID_HEIGHT, GRID_WIDTH, GREEN_LIGHT, GREEN_DARK, TILE_SIZE, WHITE, RED, SCREEN_WIDTH, \
     SCREEN_HEIGHT, FPS
 from snake import Snake
 from uiUtilities import draw_text
