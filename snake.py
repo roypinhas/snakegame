@@ -27,8 +27,8 @@ class Snake:
         if tuple(-x for x in direction.vector) != self.direction.vector:
             self.direction = direction
 
-    def check_collision(self):
-        head = self.body[0]
+    def check_collision(self, next_head=None):
+        head = next_head if next_head is not None else self.body[0]
         return (
                 head in self.body[1:] or
                 not (0 <= head[0] < GRID_WIDTH) or

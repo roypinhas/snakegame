@@ -26,3 +26,6 @@ class Apple(MapObject, ABC):
         if available_positions:
             self.position = random.choice(available_positions)
             self.bonus_direction = random.choice(list(Direction))
+
+    def draw(self, screen):
+        pass
