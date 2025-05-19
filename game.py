@@ -31,7 +31,7 @@ class Game:
         self.apple_img = pygame.transform.scale(apple_img, (apple_size, apple_size))
 
         self.start_body = [(7, 5), (6, 5), (5, 5)]
-        self.snake = Snake(self.start_body, Direction.RIGHT, self.head_img)
+        self.snake = Snake(self.start_body.copy(), Direction.RIGHT, self.head_img)
         self.apple = Apple(self.snake, self.apple_img, self.arrow_img)
         self.score = 0
         self.high_score = 0
@@ -70,7 +70,7 @@ class Game:
     def reset(self):
         self.score = 0
         self.game_over = False
-        self.snake = Snake(self.start_body, Direction.RIGHT, self.head_img)
+        self.snake = Snake(self.start_body.copy(), Direction.RIGHT, self.head_img)
         self.apple.move(self.snake)
 
     def update(self):
