@@ -38,6 +38,7 @@ class Game:
         self.game_over = False
         self.move_delay_milli = 150
         self.last_move_time = pygame.time.get_ticks()
+        self.started = False
 
     def draw_grid(self):
         for y in range(GRID_HEIGHT):
@@ -45,6 +46,10 @@ class Game:
                 color = GREEN_LIGHT if (x + y) % 2 == 0 else GREEN_DARK
                 rect = pygame.Rect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE)
                 pygame.draw.rect(self.screen, color, rect)
+
+    def draw_start_message(self):
+        draw_text("Press any key to start", True, WHITE,
+                  (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), 24, self.screen)
 
     def handle_input(self):
         for event in pygame.event.get():
@@ -58,12 +63,16 @@ class Game:
                 if not self.game_over:
                     if event.key == pygame.K_UP:
                         self.snake.set_direction(Direction.UP)
+                        self.started = True
                     elif event.key == pygame.K_DOWN:
                         self.snake.set_direction(Direction.DOWN)
+                        self.started = True
                     elif event.key == pygame.K_LEFT:
                         self.snake.set_direction(Direction.LEFT)
+                        self.started = True
                     elif event.key == pygame.K_RIGHT:
                         self.snake.set_direction(Direction.RIGHT)
+                        self.started = True
                 else:
                     self.reset()
 
@@ -74,7 +83,7 @@ class Game:
         self.apple.move(self.snake)
 
     def update(self):
-        if self.game_over:
+        if self.game_over or not self.started:
             return
 
         current_time = pygame.time.get_ticks()
@@ -127,6 +136,8 @@ class Game:
 
             if self.game_over:
                 self.draw_game_over()
+            elif not self.started:
+                self.draw_start_message()
 
             pygame.display.flip()
             self.clock.tick(FPS)
